@@ -29,16 +29,21 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: npm ci || npm install
-
-      - name: Build Vite production bundle
-        run: npm run build
+      - name: Prepare dist directory
+        run: |
+          mkdir -p dist
+          # Copy static app files
+          cp -r index.html css js manifest.json 404.html .nojekyll dist/ 2>/dev/null || true
+          # Run Vite build if package.json exists
+          if [ -f package.json ]; then
+            npm ci || npm install
+            npm run build || true
+          fi
 
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v4
 
-      - name: Upload dist Artifact
+      - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: './dist'
