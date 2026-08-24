@@ -1,0 +1,6 @@
+{
+  "name": "Digital Diary",
+  "description": "A personal digital journal replacing physical diaries with tactile paper themes, mood tracking, daily reflections, rich entries, and search.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
